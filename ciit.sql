@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-04-2024 a las 20:07:47
+-- Tiempo de generación: 11-04-2024 a las 19:39:20
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.13
 
@@ -106,17 +106,19 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id_rol` bigint NOT NULL AUTO_INCREMENT,
   `nombre_rol` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `name_rol` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_rol`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `roles`
 --
 
-INSERT INTO `roles` (`id_rol`, `nombre_rol`) VALUES
-(1, 'Administrador'),
-(3, 'Usuario'),
-(8, 'Jefe de Operaciones');
+INSERT INTO `roles` (`id_rol`, `nombre_rol`, `name_rol`) VALUES
+(1, 'Administrador', 'Administrator'),
+(3, 'Usuario', 'User'),
+(8, 'Jefe de Operaciones', 'Operation Boss'),
+(9, 'prueba', 'test');
 
 -- --------------------------------------------------------
 
@@ -140,10 +142,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `id_Rol`, `contrasena`, `fotito`) VALUES
-(1, 'Juan Perez', 'juan@gmail.com', 1, '$2b$10$BlxJLZCbhDOlw5y9Bflm8.8GtMuXSl1yOyJ/lNUtcSSwdpDQ1eGWa', 0),
+(1, 'Juanito Perez Camacho', 'juan@gmail.com', 1, '$2b$10$BlxJLZCbhDOlw5y9Bflm8.8GtMuXSl1yOyJ/lNUtcSSwdpDQ1eGWa', 1),
 (2, 'Alejandro Rosas', 'Ale@gmail.com', 3, '$2b$10$2Iyvv44GZN/UaMCPQz5B5OMXFLkgegrGH8XesCfjus6A6HH6z.MZm', 0),
 (4, 'Angel Cruz', 'Angel@gmail.com', 1, '$2b$10$FyruYKi5bnAkYa/dmGsouugDFCviSPeAxKCqPabHdkZSLxAvoCUqO', 0),
-(11, 'Luis', 'Luis@gmail.com', 1, '$2b$10$3GH8WrHg71pO4b5jvktg4ucpBSQGGq/WGiivZOVYITOpgnJsfiQrC', 0),
+(11, 'Luis', 'Luis@gmail.com', 1, '$2b$10$3GH8WrHg71pO4b5jvktg4ucpBSQGGq/WGiivZOVYITOpgnJsfiQrC', 1),
 (12, 'Pablo', 'Pablo@gmail.com', 1, '$2a$10$B4EnzCk0MNFZ5tm5.rlnU.EpGWLet7HxtGgPtm7pvDZMBgJ3LLRWW', 0),
 (13, 'Mario', 'Mario@gmail.com', 1, '$2a$10$gtE/..4T83zwX5svIOlw7u9XwurDFng8DKr.14N45He5vwpeMcTeG', 0),
 (17, 'Daniel', 'Daniel@gmail.com', 1, '$2a$10$7AuQtBQ/M7Wy.Va3ajmZJ.EELVMZdMJv3rFlTvxExTE4l2WBG3h4K', 0),
