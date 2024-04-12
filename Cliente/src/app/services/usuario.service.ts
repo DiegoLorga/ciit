@@ -38,5 +38,10 @@ actualizarContrasena(token:any, contrasena:any){
   return this.http.put(`${environment.API_URI}/usuarios/reestablecerContrasena/${token}`,{"contrasena":contrasena});
 }
 
+actualizarFotito(usuario:any)
+{
+return this.http.put(`${environment.API_URI}/usuarios/actualizarFotito/${usuario.id}`,
+usuario);
+}
 
 }

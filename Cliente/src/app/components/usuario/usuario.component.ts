@@ -6,6 +6,7 @@ import { RolesService } from 'src/app/services/roles.service';
 import { Rol } from 'src/app/models/Rol';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { environment } from 'src/environments/environment';
+import { ChangeDetectorRef } from '@angular/core';
 declare var $: any;
 
 @Component({
@@ -23,8 +24,10 @@ export class UsuarioComponent implements OnInit {
   liga = '';
   imgUsuario: any;
   fileToUpload: any;
+  imagenActualizada = false;
+  
 
-  constructor(private imagenesService: ImagenesService, private usuarioService: UsuarioService, private rolesService: RolesService) {
+  constructor(private imagenesService: ImagenesService, private usuarioService: UsuarioService, private rolesService: RolesService, private cdr: ChangeDetectorRef) {
     this.imgUsuario = null;
     this.fileToUpload = null;
     this.liga = environment.API_URI_IMAGES;
@@ -43,7 +46,7 @@ export class UsuarioComponent implements OnInit {
   // Método para actualizar la variable 'liga' cuando se seleccione un usuario
   seleccionarUsuario(usuario: Usuario) {
     this.usuario = usuario;
-    this.liga = environment.API_URI_IMAGES + "/usuarios/" + this.usuario.id + ".jpg";
+    //this.liga = environment.API_URI_IMAGES + "/usuarios/" + this.usuario.id + ".jpg";
   }
 
   crearUsuario() {
@@ -73,7 +76,6 @@ export class UsuarioComponent implements OnInit {
   actualizarUsuario(id_usuario: any) {
     this.usuarioService.listOne(id_usuario).subscribe((resUsuario: any) => {
       this.usuario = resUsuario;
-      console.log("Usuario Guapo (Ramses): ",this.usuario)
       this.seleccionarUsuario(this.usuario)
       $('#modalModificarUsuario').modal();
       $("#modalModificarUsuario").modal("open");
@@ -81,16 +83,19 @@ export class UsuarioComponent implements OnInit {
   }
 
   mostrarImagen(id_usuario: any) {
+    this.imgUsuario = null;
+    this.fileToUpload = null;
     this.usuarioService.listOne(id_usuario).subscribe((resUsuario: any) => {
       this.usuario = resUsuario;
-      console.log("Usuaria preciosa Gizelle: ",this.usuario)
-      console.log(this.usuario)
+      console.log(this.usuario);
       $('#Imagen').modal();
       $("#Imagen").modal("open");
     }, err => console.error(err));
   }
+  
 
 guardarActualizarUsuario() {
+
   this.usuarioService.actualizarUsuario(this.usuario).subscribe((res) => {
     $('#modalModificarUsuario').modal('close');
     this.usuarioService.list().subscribe((resUsuarios: any) => {
@@ -148,37 +153,53 @@ metodoPrueba() {
 
 cargandoImagen(archivo: any) {
   this.imgUsuario = null;
-  this.liga = environment.API_URI_IMAGES;
- 
+  this.fileToUpload = null;
   this.fileToUpload = archivo.files.item(0);
   let imgPromise = this.getFileBlob(this.fileToUpload);
   imgPromise.then(blob => {
-    console.log("convirtiendo imagen")
+  console.log("convirtiendo imagen");
+  console.log(this.usuario.id);
+  //this.usuario.fotito = 2; 
+
 
     this.imagenesService.guardarImagen(this.usuario.id, "usuarios", blob).subscribe(
       (res: any) => {
         this.imgUsuario = blob;
+        this.cdr.detectChanges(); // Aquí se llama a detectChanges
         console.log("Usuario id: ", this.usuario.id);
-  
         
-        // Actualizar la variable 'liga' después de cargar la imagen
-        this.liga = environment.API_URI_IMAGES + "/usuarios/" + this.usuario.id + ".jpg";
-        console.log(this.usuario.id);
-        
-        console.log(this.liga);
-        
-        this.usuarioService.list().subscribe((resUsuarios: any) => {
-          this.usuarios = resUsuarios;
-          this.rolesService.list().subscribe((resRoles: any) => {
-            this.roles = resRoles;
-            console.log("roles:", this.roles);
-          }, err => console.error(err));
+        //if (this.usuario.fotito === 1) {
+        //this.liga = environment.API_URI_IMAGES + '/usuarios/' + this.usuario.id + '.jpg?t=' + new Date().getTime();
+        //}
+
+        this.imagenActualizada = true; // Aquí se marca la imagen como actualizada
+        this.usuarioService.actualizarFotito(this.usuario).subscribe((resusuario: any)=> {
+          console.log("fotito: ", resusuario);
+         
         }, err => console.error(err));
+        
       },
-      err => console.error(err));
+      err => console.error(err)
+    );
+  });
+  
+}
+
+
+guardandoImagen(){
+  this.imgUsuario = null;
+  this.fileToUpload = null;
+  
+  Swal.fire({
+    title: "Actualizado",
+    text: "Tu imagen se ha actualizado.",
+    icon: "success"
   });
 
-
+  setTimeout(() => {
+    location.reload();
+  }, 2000);
+ 
 }
 
 
@@ -197,4 +218,7 @@ getFileBlob(file: any) {
   });
 
 }
+
+
+
 }

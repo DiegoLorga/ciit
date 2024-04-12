@@ -6,8 +6,7 @@
   itemsPerPage: pageSize,
   currentPage: p
   };let i=index">
-    <td *ngIf="usuario.fotito == 1"><img width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg"
-alt="{{liga}}/usuarios/1.jpg"></td>
+    <td *ngIf="usuario.fotito == 1"><img width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg" alt="{{liga}}/usuarios/1.jpg"></td>
     <td *ngIf="usuario.fotito == 0"><img width="64" src="{{liga}}/usuarios/0.jpg" alt="{{liga}}/usuarios/1.jpg"></td>
     <td>{{usuario.nombre}}</td>
     <td>{{usuario.correo}}</td>
@@ -35,16 +34,16 @@ alt="{{liga}}/usuarios/1.jpg"></td>
     <div style="border: .5px solid #78909c; padding: 10px;">
       <div class="row">
         <div class="input-field col s12">
-
-          <div align="center">
-            <img *ngIf="usuario.fotito == 1" width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg"
-              alt="{{liga}}/usuarios/1.jpg">
+ <!--
+        <div align="center">
+            <img *ngIf="usuario.fotito == 1" width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg" alt="{{liga}}/usuarios/1.jpg">
             <img *ngIf="usuario.fotito == 0" width="64" src="{{liga}}/usuarios/0.jpg" alt="{{liga}}/usuarios/1.jpg">
-          </div>
+            
+          </div> -->
         </div>
 
         <div class="input-field col s6">
-          <label>Imagen de usuario</label>
+          <label>Imagen de usuarioooooo</label>
           <br><br>
           <input type="file" (change)="cargandoImagen($event.target)" multiple>
         </div>
@@ -52,7 +51,7 @@ alt="{{liga}}/usuarios/1.jpg"></td>
       <div class="row">
         <div class="col s6 center">
           <input type="submit" class="waves-effect btn-large brown lighten-3 modal-close"
-            (click)="guardarActualizarUsuario()" value="Enviar">
+            (click)="guardandoImagen()" value="Enviar">
         </div>
         <div class="col s6 center">
           <a class="modal-action modal-close waves-effect btn-large brown lighten-3
@@ -143,4 +142,5 @@ alt="{{liga}}/usuarios/1.jpg"></td>
       </div>
     </div>
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </div>
