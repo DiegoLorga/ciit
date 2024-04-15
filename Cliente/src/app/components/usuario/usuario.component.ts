@@ -114,8 +114,8 @@ export class UsuarioComponent implements OnInit {
     console.log("Click en eliminar usuario");
     console.log("Identificador del usuario: ", id);
     Swal.fire({
-      title: "¿Estás seguro bro?",
-      text: "No es posible revertir este!",
+      title: "¿Estás seguro de eliminar este usuario?",
+      text: "¡No es posible revertir esta acción!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -199,7 +199,7 @@ export class UsuarioComponent implements OnInit {
 
     Swal.fire({
       title: "Actualizado",
-      text: "Tu imagen se ha actualizado.",
+      text: "Tu imagen se ha actualizado",
       icon: "success"
     });
   }
