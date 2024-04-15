@@ -5,6 +5,7 @@ export class Usuario{
     id_Rol: number;
     contrasena: string;
     fotito: number;
+    imagenUrl: string; // URL de la imagen
 
     constructor() {
         this.id = 0;
@@ -13,5 +14,6 @@ export class Usuario{
         this.id_Rol = 0;
         this.contrasena = '789*';
         this.fotito = 0;
+        this.imagenUrl='';
     }
 }

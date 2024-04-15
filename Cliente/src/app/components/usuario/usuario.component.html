@@ -6,9 +6,10 @@
   itemsPerPage: pageSize,
   currentPage: p
   };let i=index">
+  <!--<td *ngIf="usuario.fotito == 1"><img width="64" src="{{imagenUrls[usuario.id]}}/usuarios/{{usuario.id}}.jpg" alt="{{liga}}/usuarios/1.jpg"></td>-->
     <td *ngIf="usuario.fotito == 1"><img width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg" alt="{{liga}}/usuarios/1.jpg"></td>
     <td *ngIf="usuario.fotito == 0"><img width="64" src="{{liga}}/usuarios/0.jpg" alt="{{liga}}/usuarios/1.jpg"></td>
-    <td>{{usuario.nombre}}</td>
+    <td>{{usuario.nombre  }}</td>
     <td>{{usuario.correo}}</td>
     <td><a href="javascript: void(0);" class="space" (click)="actualizarUsuario(usuario.id)">
         <i class="material-icons">edit</i></a></td>
@@ -34,14 +35,13 @@
     <div style="border: .5px solid #78909c; padding: 10px;">
       <div class="row">
         <div class="input-field col s12">
- <!--
-        <div align="center">
+        <!--
+                  <div align="center">
             <img *ngIf="usuario.fotito == 1" width="64" src="{{liga}}/usuarios/{{usuario.id}}.jpg" alt="{{liga}}/usuarios/1.jpg">
             <img *ngIf="usuario.fotito == 0" width="64" src="{{liga}}/usuarios/0.jpg" alt="{{liga}}/usuarios/1.jpg">
-            
-          </div> -->
+          </div> 
         </div>
-
+      -->
         <div class="input-field col s6">
           <label>Imagen de usuarioooooo</label>
           <br><br>

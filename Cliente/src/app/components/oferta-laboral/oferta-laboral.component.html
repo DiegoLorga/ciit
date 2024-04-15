@@ -1,7 +1,7 @@
 <a href="javascript: void(0);"><i class="material-icons" (click)="crearOferta()">add</i></a>
 
 <div class="container">
-
+  <h1>{{"Lista de ofertas" | translate}}</h1>
   <table class="default" *ngIf="ofertas != undefined">
     <tr *ngFor="let oferta of ofertas |
     paginate: {
