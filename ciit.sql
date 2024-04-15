@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-04-2024 a las 19:39:20
--- Versión del servidor: 8.2.0
--- Versión de PHP: 8.2.13
+-- Tiempo de generación: 14-04-2024 a las 22:51:15
+-- Versión del servidor: 8.0.31
+-- Versión de PHP: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `rfc` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `telefono` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `responsable` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `responsible` text COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_empresa`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- Volcado de datos para la tabla `empresa`
 --
 
-INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`, `direccion`, `rfc`, `telefono`, `responsable`) VALUES
-(1, 'corana s.a de c.v', 'Calle 13', '546546', '2132', 'ninguno'),
-(3, 'pepsi s.a de c.v', 'Calle 13', '546546', '2132', 'ninguno'),
-(4, 'intel', 'Calle 14', '654321', '3221', 'ninguno');
+INSERT INTO `empresa` (`id_empresa`, `nombre_empresa`, `direccion`, `rfc`, `telefono`, `responsable`, `responsible`) VALUES
+(1, 'corana s.a de c.v', 'Calle 13', '546546', '2132', 'ninguno', 'none'),
+(3, 'pepsi s.a de c.v', 'Calle 13', '546546', '2132', 'ninguno', 'none'),
+(4, 'intel', 'Calle 14', '654321', '3221', 'ninguno', 'none');
 
 -- --------------------------------------------------------
 
@@ -58,8 +59,10 @@ CREATE TABLE IF NOT EXISTS `ofertalaboral` (
   `idOferta` bigint NOT NULL AUTO_INCREMENT,
   `salario` float NOT NULL,
   `puesto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `position` text COLLATE utf8mb4_general_ci NOT NULL,
   `id_empresa` bigint NOT NULL,
   `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
   `horario` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`idOferta`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,11 +71,11 @@ CREATE TABLE IF NOT EXISTS `ofertalaboral` (
 -- Volcado de datos para la tabla `ofertalaboral`
 --
 
-INSERT INTO `ofertalaboral` (`idOferta`, `salario`, `puesto`, `id_empresa`, `descripcion`, `horario`) VALUES
-(1, 2000, 'Jefe', 1, 'mucho money', '7 am- 6pm'),
-(2, 3000, 'Ayudante', 1, 'servicio de limpieza', '6 am- 5pm'),
-(3, 4000, 'Administrador', 3, 'administrar inventario', '7 am- 6pm'),
-(4, 15000, 'Secretaria', 2, 'Puesto fijo', '9 am - 5 pm');
+INSERT INTO `ofertalaboral` (`idOferta`, `salario`, `puesto`, `position`, `id_empresa`, `descripcion`, `description`, `horario`) VALUES
+(1, 8000, 'Jefe', 'Boss', 1, 'Encargarse de toda la administración de la empresa', 'Take care of all the administration of the company', '7 am- 6pm'),
+(2, 5000, 'Gerente de limpieza', 'Cleaning manager', 1, 'servicio de limpieza', 'Cleaning service', '6 am- 5pm'),
+(3, 6000, 'Administrador', 'Administrator', 3, 'administrar inventario', 'Manage Inventory', '7 am- 6pm'),
+(4, 5000, 'Secretaria', 'Secretary', 2, 'Puesto fijo', 'Fixed position', '9 am - 5 pm');
 
 -- --------------------------------------------------------
 
@@ -106,7 +109,7 @@ DROP TABLE IF EXISTS `roles`;
 CREATE TABLE IF NOT EXISTS `roles` (
   `id_rol` bigint NOT NULL AUTO_INCREMENT,
   `nombre_rol` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `name_rol` text COLLATE utf8mb4_general_ci NOT NULL,
+  `name_rol` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_rol`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,7 +121,7 @@ INSERT INTO `roles` (`id_rol`, `nombre_rol`, `name_rol`) VALUES
 (1, 'Administrador', 'Administrator'),
 (3, 'Usuario', 'User'),
 (8, 'Jefe de Operaciones', 'Operation Boss'),
-(9, 'prueba', 'test');
+(9, 'Prueba', 'Test');
 
 -- --------------------------------------------------------
 

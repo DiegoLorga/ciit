@@ -5,6 +5,7 @@ export class Empresa{
     rfc: string;
     telefono: string;
     responsable: string;
+    responsible: string;
     fecha : string;
 
     constructor() {
@@ -14,6 +15,7 @@ export class Empresa{
         this.rfc = '';
         this.telefono = '';
         this.responsable = '';
+        this.responsible = '';
         this.fecha = '';
     }
 }
